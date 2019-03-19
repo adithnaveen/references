@@ -1,0 +1,66 @@
+<html>
+  <head>
+	<script type="text/javascript">
+		function fnRegExp(){
+			var x=/ll/;
+			var reg = new RegExp("ll");
+				
+			document.write("<hr>"+ "hello".match(x));
+			document.write("<hr>"+"hello".match(reg));
+
+
+			document.write("<hr>" + "023234".match(/0[0-7]/));
+			document.write("<hr>" + "023234".match(/0[0-7]+/));
+
+			document.write("<hr>" + "192.168.1.2.5".match(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/));
+			name=prompt("Enter Your Name ", "Name");
+
+			document.write("<hr>" + name.match(/[a-zA-Z]+/));
+
+			if(name==name.match(/[a-zA-Z]+/))
+				document.write("<hr>" +"You have entered valid Name");
+			else
+				document.write("<hr>" +"You have entered Invalid Name");
+
+				
+			// pattern match for Email	
+			email=prompt("enter your email ", "Email");
+			document.write("<hr>" 
+			+email.match(/[a-zA-Z0-9.]+[@][a-zA-Z]+[.][com|org|net]+/));
+
+
+			if(email == email.match(/[a-zA-Z0-9.]+[@][a-zA-Z]+[.][com|org|net]+/))
+				document.write("<hr>Valid Email Entered ");
+			else
+				document.write("<hr> Invalid Email Entered");
+
+			// checking for salary which takes +/- symbol optionally and only numbers accepted
+
+			sal = prompt("Enter your salary ", "optionally given +/-");
+
+			if(sal == sal.match(/[+-]?\d+/))
+				document.write("<hr>" +"Salary is Valid");
+			else	
+				document.write("<hr>" + "Invalid salary");
+
+
+
+			alert("enter your name " );
+			_name = prompt("Enter your full Name ");
+
+			if(_name=_name.match(/[^0-9]+/))
+				alert("Valid Full Name ");
+			else
+				alert("Invalid Full Name ");
+
+
+
+		}
+	</script>
+  </head>
+  <body>
+  	<script type="text/javascript">
+		fnRegExp();
+	</script>
+  </body>
+</html>

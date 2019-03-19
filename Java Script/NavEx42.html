@@ -1,0 +1,21 @@
+<html>
+  <head>
+	<script type="text/javascript">
+		onerror=handleErr;
+
+		function handleErr(msg, url, lineno){
+			document.write("Error occured in the page <br> with msg : "+ 
+					msg +"<br> url is " + url +" <br>line Number is "+ lineno);
+		}
+
+		function MyBusinessLogic(){
+			allert("hi how are you ");
+		}
+	</script>
+  </head>
+  <body>
+  		<script type="text/javascript">
+			MyBusinessLogic();
+		</script>
+  </body>
+</html>

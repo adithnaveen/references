@@ -1,0 +1,37 @@
+<html>
+  <head>
+	<title>Dom Example</title>
+  </head>
+  <body>
+  	<p>This is First Para</p>
+	<p>Hello World !!! </p>
+	<p> This is another para</p>
+
+	<script  language="javascript" type="text/javascript">
+		function AccessValues(){
+			var x = document.getElementsByTagName('p')[0].firstChild;
+			alert(x.nodeValue);
+
+
+			var y = document.getElementsByTagName('p')[1].firstChild;
+			alert(y.nodeValue);
+
+			x = document.body.childNodes[1].firstChild
+			alert("other way of accessing \n" + x.nodeValue);
+
+			// [0] - html, [1] - body , [0] - first paragraph
+			x = document.childNodes[0].childNodes[1].childNodes[0];
+			alert(x.firstChild.nodeValue);
+			
+
+			x = document.childNodes[0].childNodes[1].childNodes[1].firstChild
+			alert(x.nodeValue);
+
+
+			x = document.childNodes[0].childNodes[1].childNodes[3]
+			alert(x.firstChild.nodeValue);
+		}
+		AccessValues();
+	</script>
+  </body>
+</html>

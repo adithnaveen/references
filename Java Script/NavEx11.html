@@ -1,0 +1,30 @@
+<html>
+  <head>
+	<script language="javascript" type="text/javascript">
+		// java script does not support overloading, the last overloaded method is 
+		// considered for execution 
+		function display(){
+			userName=prompt("Enter your Name " , "");
+			document.write("Welcome Mr/Ms/Mrs "+ userName);
+		}
+
+		function display(x){
+			if(x==null)
+				document.write("Sorry  you did not pass any value");
+			else
+				document.write("You have passed " + x);
+		}
+		
+		function display(x, y){
+			document.write("You have passed " + x +" and "+ y);
+		}
+	</script>
+
+  </head>
+  <body>
+  	<script language="javascript" type="text/javascript">
+		//display();
+		display("HCL", "INFY");
+	</script>
+  </body>
+</html>

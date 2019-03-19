@@ -1,0 +1,64 @@
+<html>
+  <head>
+	<script type="text/javascript">
+
+		function valName(){
+			var name=document.empForm.empName.value;
+
+			if(name==name.match(/[A-Za-z]+/))
+				document.empForm.empName.value=name.toUpperCase(); 
+			else{
+				alert("Name Cannot have special Chars");
+				document.empForm.empName.value="";
+				document.empForm.empName.focus();
+			}
+		}
+		function Calculate(){
+			document.empForm.hra.value = document.empForm.bs.value*0.12;
+			document.empForm.da.value = document.empForm.bs.value*0.23;
+			document.empForm.pf.value = document.empForm.bs.value*0.09;
+		}
+	</script>
+  </head>
+  <body>
+  	<form name="empForm">
+		<table>
+			<tr>
+				<td>Enter your Name </td>
+				<td><input type="text" name="empName" onblur="valName()"/></td>
+			</tr>
+			<tr>
+				<td>Enter Your Age</td>
+				<td><input type="text" name="age" onblur="valAge()"/></td>
+			</tr>
+			<tr>
+				<td>Enter Basic Salary </td>
+				<td><input type="text" name="bs" onblur="Calculate()"></td>
+			</tr>
+			<tr>
+				<td>HRA is </td>
+				<td><input type="text" name="hra" readonly/></td>
+			</tr>
+			<tr>
+				<td>DA is</td>
+				<td><input type="text" name="da" readonly/></td>
+			</tr>
+			<tr>
+				<td>PF is</td>
+				<td><input type="text" name="pf" readonly/></td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+		
+	</form>
+
+  </body>
+</html>

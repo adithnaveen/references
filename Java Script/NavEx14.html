@@ -1,0 +1,37 @@
+<html>
+  <head>
+	<script language="javascript" type="text/javascript">
+		eid = 102;
+		name="Naveen";
+		function Person(eid, name){
+			this.eid = eid;
+			this.name = name;
+		}
+
+		// this function is prototyped from person class 
+		Person.prototype.Display=function(){
+			// accessing the class variables should be done with this.xxxx
+			alert("Employee Name is " + this.name +" Employee id is " + this.eid);
+		}
+
+		Person.prototype.Display1=function(){
+			// trying to pring only eid will throw an error if the variable is not inititalize, 
+			// and if the variable is initialized then it will refer to local variable 
+			alert("Emp id is " + eid + " Name is " + name);
+		}
+		Person.prototype.ChangeName=function(newname){
+			this.name=newname;
+		}
+	</script>
+  </head>
+  <body>
+  	<script language="javascript" type="text/javascript">
+		p = new Person(101, "Chaitra");
+//		alert("The Employee id is " + p.eid  + " Employee Name is " + p.name);
+		p.Display();
+		p.ChangeName("Chaitra Kumar");
+		p.Display();
+		p.Display1();
+	</script>
+  </body>
+</html>

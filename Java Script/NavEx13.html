@@ -1,0 +1,27 @@
+<html>
+  <head>
+	<script language="javascript" type="text/javascript">
+		function CallMe(){
+			obj = new Object;
+
+			// declaring the variables i and j is not required, and these variables 
+			// are implcitly taken for object
+			obj.i = 10;
+			obj.j = 20;
+
+			alert("i value is " + obj.i +" and j value is " + obj.j);
+
+			// this k happens to be a local variable and does not have any relation with 
+			// the object scope 
+			var k = 300;
+			alert("K value is " + k);
+		}
+	</script>
+
+  </head>
+  <body>
+  	<script language="javascript" type="text/javascript">
+		CallMe();
+	</script>
+  </body>
+</html>

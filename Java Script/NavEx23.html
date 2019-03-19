@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<script type="text/javascript">
+			function fnchangeText(){
+				var _myPara = document.body.getElementsByTagName('p')[0];
+				
+				var _bold = document.createElement('b');
+				var _text = document.createTextNode("Hello world");
+
+				// <b>Hello World</b>
+				_bold.appendChild(_text);
+	
+			//	document.body.appendChild(_bold);
+			//	document.body.insertBefore(_bold, _myPara);
+				document.body.replaceChild(_bold, _myPara);
+				
+			}
+		</script>
+	</head>
+  <body>
+  
+	<p>Welcome All </p>
+
+	<script type="text/javascript">
+		fnchangeText();
+	</script>
+  </body>
+</html>

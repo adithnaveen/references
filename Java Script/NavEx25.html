@@ -1,0 +1,21 @@
+<html>
+  <head>
+	<script type="text/javascript">
+		function fnChangeText(){
+			_divref= document.getElementById("mydiv");
+			temp= _divref.innerHTML;
+			name=prompt("Enter your Name ", "name");
+	
+			_divref.innerHTML=temp +" " + name;
+			_divref.setAttribute("align", "center");
+		}
+	</script>
+  </head>
+  <body>
+	<h2>Replacing the content of div tag</h2>
+	<div id="mydiv">Welcome </div>  
+	<hr>
+	<a href="#" onclick="fnChangeText()">Change Content</a>
+	<hr>
+  </body>
+</html>

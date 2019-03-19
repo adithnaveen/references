@@ -1,0 +1,29 @@
+<html>
+  <head>
+	<script type="text/javascript">
+		function fnNavigator(){
+			// getting navigator properties 
+		
+			document.write("<hr> App code ---->"+ navigator.appCodeName);
+			document.write("<hr>Browser Name ---- >"+ navigator.appName);
+			document.write("<hr>Platform ---->"+ navigator.platform);
+			document.write("<hr>UserAgent ----> "+ navigator.userAgent);
+			document.write("<hr>Cookies Enabled ----> "+ navigator.cookieEnabled);
+
+		
+
+			// to check the mime types, works with Mozilla firefox/ Netscapre
+			if(navigator.mimeTypes){
+				for(temp in navigator.mimeTypes){
+					document.write("<hr> "+ navigator.mimeTypes[temp]);
+				}
+			}
+		}
+	</script>
+  </head>
+  <body>
+  	<script type="text/javascript">
+		fnNavigator();
+	</script>
+  </body>
+</html>

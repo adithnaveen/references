@@ -1,0 +1,37 @@
+
+
+<html>
+  <head>
+	<script language="javascript" type="text/javascript">
+	// program to show working of confirm and accepting the value from the use using prompt
+		function fnConfirm(){
+			res=0;
+
+			do{
+				val=prompt("Enter a number to be added", "0");
+				res= res + parseInt(val);
+
+				x=confirm("Do you want to continue");
+			
+				if(!x)
+					break;
+			}while(true);
+
+			alert("Sum of all numbers entered is " + res);
+		}
+	</script>
+  </head>
+
+  <body>
+  	<script language="javascript" type="text/javascript">
+		fnConfirm();
+	</script>
+  </body>
+</html>
+
+
+
+
+
+
+

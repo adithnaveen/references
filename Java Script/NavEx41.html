@@ -1,0 +1,30 @@
+<html>
+  <head>
+	<script type="text/javascript">
+		function fnThrowEx(){
+			myval= prompt ("Enter a number between 1 and 100", "number");
+
+			try{
+				if(myval>100)
+					throw "High";
+				else if(myval<0)
+					throw "Low";
+				else
+					alert("you have entered right value");				
+			}catch(err){
+				if(err=="High")
+					document.write("<hr> Sorry You have entered too high Value");
+				else if (err=="Low")
+					document.write("<hr> Sorry You have entered 0 or -ve value");
+			}
+
+			document.write("<hr> we can have any business logic here");
+		}
+	</script>
+  </head>
+  <body>
+  	<script type="text/javascript">
+		fnThrowEx();
+	</script>
+  </body>
+</html>

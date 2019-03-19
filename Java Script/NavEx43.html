@@ -1,0 +1,49 @@
+<html>
+  <head>
+	<script type="text/javascript">
+		function setCookie(val){
+			var dt = new Date();
+			dt.setDate(dt+1);
+			document.cookie="uname="+escape(val)+";expires="+dt.toGMTString;
+
+			alert("Cookie Recorded");
+		}
+
+		function checkCookie(){
+			// uname is the text box name 
+			userName=getCookie("uname");
+
+			if(userName!=null && userName!="")
+				document.forms[0].uname.value=userName;
+		}
+
+		// to get the cookie information, the user has to pass the name of the text box
+		// this is will be the same name for a particular website developer 
+		function getCookie(name){
+			// if the browser has strored cookies 
+			if(document.cookie.length>0){
+				inx = document.cookie.indexOf(name);
+
+				if(inx!=-1)
+					inx = inx+(name.length+1);
+
+				inxval = document.cookie.indexOf(";", inx);
+
+				if(inxval==-1)
+					inxval = document.cookie.length;
+
+				alert("End position is  "+ inxval);
+				return unescape(document.cookie.substring(inx, inxval));
+			}
+			return "";
+		}
+	</script>
+  </head>
+  <body onLoad="checkCookie()">	
+  	<form>
+		Enter your Name <input type="text" name="uname"><br>
+		<input type="button" value="Set cookie" onClick="setCookie(document.forms[0].uname.value)"/>
+		<input type="reset"/>
+	</form>
+  </body>
+</html>

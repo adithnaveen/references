@@ -1,0 +1,21 @@
+<html>
+  <head>
+	<script type="text/javascript">
+		function showTime(){
+			d = new Date();
+
+			hrs = d.getHours();
+			mins = d.getMinutes();
+			secs = d.getSeconds();
+
+			document.getElementById('mytime').innerHTML=hrs +" : " +mins +" : " + secs;
+
+			// call the function showTime with delay  of 1000 ms = 1sec
+			setTimeout('showTime()', 1000);
+		}
+	</script>
+  </head>
+  <body onLoad="showTime()">
+  	<div id="mytime"></div>
+  </body>
+</html>

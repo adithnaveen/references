@@ -1,0 +1,25 @@
+<html>
+  <body bgcolor="cyan">
+  	<h2>This is for testing </h2>
+  </body>
+
+	<script language="javascript" type="text/javascript">
+		function fnDisplay(){
+			x = document.body
+
+			for(var i=0; i<x.attributes.length; i++){
+
+				if(x.attributes[i].nodeName=='bgcolor'){
+					// this code is for Google Chrome/FireFox
+					document.write("<hr> The node name is " + x.attributes[i].nodeName);
+					document.write("<hr> The Node Value is " + x.attributes[i].nodeValue);
+				}else if(x.attributes[i].nodeName=='bgColor'){
+					document.write("<hr> The node name is " + x.attributes[i].nodeName);
+					document.write("<hr> The Node Value is " + x.attributes[i].nodeValue);
+				}
+			}
+		}
+	
+		fnDisplay();
+	</script>
+</html>

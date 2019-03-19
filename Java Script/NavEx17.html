@@ -1,0 +1,22 @@
+<html>
+  <head>
+	<script language="javascript" type="text/javascript">
+		// this function does not take any parameters, still you can pass parameters to the function
+		// and can be accessed as arguments
+
+		function fnSum(){
+			var sum=0;
+			
+			for(i=0; i<fnSum.arguments.length; i++)
+				sum += fnSum.arguments[i];
+
+			document.write("<hr> Sum of numbers is " + sum);	
+		}
+	</script>
+  </head>
+  <body>
+  	<script language="javascript" type="text/javascript">
+		fnSum(23,43,56,34,2,4);
+	</script>
+  </body>
+</html>

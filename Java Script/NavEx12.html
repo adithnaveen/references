@@ -1,0 +1,35 @@
+<html>
+  <head>
+	<script language="javascript" type="text/javascript">
+		// the "total" variable is declared outside all the function and scope is available
+		// to all functions 
+		total=0;
+		function fnFirst(){
+			// variable which do not preceed with key work var is considered to be as 
+			// global variable 
+			x=100;
+			// the varialbe y is local, bcoz it is preceeded with var 
+			var y = 200;
+
+			total = x+y;
+			alert("Total in First Function " + total);
+		}
+
+		function fnSecond(){
+			// calling the first function from other functions 
+			fnFirst();
+			z=300;
+			alert("Total in secod function is " + total);
+			alert("Sum of x(defined in first) and z " + (x+z));
+
+			// trying to access the variable y is an error in other function 
+			//alert("The value of local variable y in first is " + y);
+		}
+	</script>
+  </head>
+  <body>
+  	<script language="javascript" type="text/javascript">	
+		fnSecond();
+	</script>
+  </body>
+</html>

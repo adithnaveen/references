@@ -1,0 +1,45 @@
+<html>
+  <head>
+	<script language="javascript" type="text/javascript">
+		// this will be treated as class 
+	function Employee(eid, name){
+		var fullid=eid+name;
+		this.eid = eid;
+		this.name = name;
+
+		this.Display=function(){
+			document.writeln("<hr>Full id inside display "+ fullid);
+		}
+
+		var changeName = function(ename){
+			document.writeln("<hr>The new Name passed is " + ename);
+			this.name = ename;
+			document.writeln("<hr>The new Name second time is  passed is " + this.name);
+			fullid = eid+this.name;
+		}
+
+		this.AccessMe=function(name){
+			document.writeln("<hr>Hi i'm in AccessMe, and calling ChangeName");
+			changeName(name);
+		}
+
+		Employee.prototype.ChangeAgain=function(name){
+			document.writeln("<hr>Calling change again with  " + name);
+			this.name= name;
+		}
+	}
+
+	</script>
+  </head>
+  <body>
+  	<script language="javascript" type="text/javascript">
+		e = new Employee(1234, "Gowri");
+		e.Display();
+		e.AccessMe("Gowri R");
+		e.Display();
+		document.write("<hr>New name before privilleged call is " + e.name);
+		e.ChangeAgain("testin");
+		document.write("<hr>New name is " + e.name);
+	</script>
+  </body>
+</html>

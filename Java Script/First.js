@@ -1,0 +1,1 @@
+alert("hi i'm from external File");

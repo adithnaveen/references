@@ -1,0 +1,21 @@
+<html>
+  <head>
+	<script type="text/javascript">
+	function Communicate(){
+		name=prompt("Enter your name ", "name" );
+		flag=confirm("Do you want to see the text in red color " );	
+
+		if(flag){
+			var text= document.createTextNode(name);
+			document.body.appendChild(text);
+			document.body.setAttribute("text", "red");
+		}	
+	}
+	</script>
+  </head>
+  <body>
+  	<script type="text/javascript">
+		Communicate();
+	</script>
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<html>
+  <head>
+	<script type="text/javascript" src="RegValidation.js"></script>
+  </head>
+  <body bgcolor="lightblue">
+	<h2 align="center">Registration Form</h2>  <hr>
+
+
+	<form name="regForm" onSubmit="return fnValidateForm()">
+		<table border="3" cellspacing="3" bordercolor="orange" bgcolor="lightyellow" align="center">
+			<tr>
+				<td>Enter your Name </td>
+				<td><input type="text" name="userName"/></td>
+			</tr>
+			<tr>
+				<td>Enter Password</td>
+				<td><input type="password" name="userPwd"/></td>
+			</tr>
+			<tr>
+				<td>Re-Enter password</td>
+				<td><input type="password" name="cPwd"/></td>
+			</tr>
+			<tr>
+				<td>Select Sex</td>
+				<td>
+					<input type="radio" name="sex" value="m">Male 
+					<input type="radio" name="sex" value="f">Female 
+				</td>
+			</tr>
+			<tr>
+				<td>Select your Qualification</td>
+				<td>
+					<select name="qual">
+						<option>----Select----</option>
+						<option value="bca">BCA</option>
+						<option value="be">BE</option>
+						<option value="mca">MCA</option>
+						<option value="mtech">M.Tech</option>
+						<option value="btech">B.Tech</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Enter your Address</td>
+				<td><textarea name="addrs" rows="5" cols="40"></textarea></td>
+			</tr>
+			<tr>
+				<td>Select your living Country</td>
+				<td>
+					<select name="country">
+						<option>Select Country</option>
+						<option value="india">INDIA</option>
+						<option value="jp">JAPAN</option>
+						<option value="nz">NEWZEALAND</option>
+						<option value="malasia">MALASIA</option>
+						<option value="pak">PAKISTAN</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Select your Area of Interest</td>
+				<td>
+					<input type="checkbox" name="cb1" value="sports"> Sports
+					<input type="checkbox" name="cb2" value="politics"> Indian Politics
+					<input type="checkbox" name="cb3" value="movies"> Movies
+					<input type="checkbox" name="cb4" value="gossip"> Gossip
+				</td>
+			</tr>
+
+			<tr>
+				<td colspan="2">Have you read Terms and Conditions
+					 <input type="radio" name="terms" value="a" onclick="fnEnableReg()">Accept 
+					 <input type="radio" name="terms" value="d" onclick="fnDisableReg()">Decline 
+
+					</td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2">
+					<input type="reset"> | <input type="submit" value="Register" name="regBtn" disabled>
+				</td>
+			</tr>
+			
+
+
+
+
+		</table>
+	</form>
+  </body>
+</html>

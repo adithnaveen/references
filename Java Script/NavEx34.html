@@ -1,0 +1,27 @@
+<html>
+  <head>
+	<script type="text/javascript">
+		function showInfo(){
+			switch(window.location.protocol){
+				case  "http:" :
+					alert("Called from the Web");
+					break;
+
+				case "ftp:" :
+					alert("Called from ftp ");
+					break;
+				
+				case "file:" :
+					alert("Called from file");
+					break;
+				default :	
+					alert("Called from unknown source");
+					break;
+			}
+		}
+	</script>
+  </head>
+  <body>
+  	<input type="button" onclick="showInfo()"  value="Called from"/>
+  </body>
+</html>

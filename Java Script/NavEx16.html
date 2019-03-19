@@ -1,0 +1,77 @@
+<html>
+  <head>
+	<script language="javascript" type="text/javascript">
+		function fnArrayEx(){
+			a = new Array(3);
+			a[0] = 100;
+			a[1] = 200;
+			a[2] = 300;
+
+			document.write("<hr> Array Content is " + a);
+			document.write("<hr> Array Content @1 pos is " + a[1]);
+			document.write("<hr> Array length is " + a.length);
+
+			// for loop
+			for(i=0; i<a.length; i++)
+				document.write("<hr> content @ "+  i +" pos is " + a[i]);
+		}
+
+		function fnMixedArray(){
+			var marr = new Array(4);
+			marr[0] = "Shivu";
+			marr[1] = true;
+			marr[2] = 22;
+			marr[3] = 34.2;
+
+			document.write("<hr> Mixed Array Content is " + marr);
+			
+			// for each 
+			for(x in marr)
+				document.write("<hr> Mixed Array content is " + marr[x]);
+
+			
+		}
+
+
+		function MyWeek(){
+			week = new Array("Mon", "Tue", "Wed", "Thu");
+			document.write("<hr> the content of Array before any operation is - - -" + week);
+			// add at last 
+			week.push("Fri");
+			document.write("<hr> After first Push - - -" + week);
+			week.push("Sat", "Sun");
+			document.write("<hr> After second push - - -" + week);
+			// will delete one element from last
+			week.pop();
+			document.write("<hr> After First Pop - - - -" + week);
+
+
+			week.unshift("Holiday");
+			document.write("<hr> After First Unshift - - - -" + week);
+
+			week.shift();
+			document.write("<hr> After one Shift operation " + week);
+		}
+
+
+		function fnSplice(){
+			arr = new Array(1,2,3,4,5,6);
+
+			document.write("<hr> Content of Array before splice is " + arr);
+			arr.splice(2, 1);
+			document.write("<hr> Content of Array after splice (2,1) is " + arr);
+			arr.splice(1,2, 100, 200, 300, 400);
+
+			document.write("<hr> Content of arry after adding element " + arr);
+		}
+	</script>
+  </head>
+  <body>
+  	<script language="javascript" type="text/javascript">
+		//fnArrayEx();
+		//fnMixedArray();
+		//MyWeek();
+		fnSplice();
+	</script>
+  </body>
+</html>

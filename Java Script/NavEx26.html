@@ -1,0 +1,42 @@
+<html>
+  <head>
+	<script type="text/javascript">
+		function fnPreDefine(){
+			s = "Hindustan";
+
+			document.write("<hr> Length of the String is " + s.length);
+			document.write("<hr> Lower Case is " + s.toLowerCase());
+			document.write("<hr> Upper Case is " + s.toUpperCase());
+			document.write("<hr> Index of s in String is " + s.indexOf("s"));
+			document.write("<hr> Index of n is " + s.indexOf("n"));
+			document.write("<hr> Last index of n is " + s.lastIndexOf("n"));
+			document.write("<hr> SubString " + s.substring(1,3));
+			document.write("<hr> Substr " + s.substr(1,3));
+			document.write("<hr> Chat @4 is " + s.charAt(4));
+			document.write("<hr> Slice from 3rd pos " + s.slice(3));
+			document.write("<hr> Slice from 3, 4 is " + s.slice(3,4));
+			document.write("<hr> Char Code of 'a' is   "+ 'a'.charCodeAt());
+			document.write("<hr> ASCII to Char values " + String.fromCharCode(65, 66, 67));
+			document.write("<hr> pattern math with ll in hello is " + "hello".match(/ll/));
+			document.write("<hr> Replace chars " + "hello".replace(/ell/, 'ipp'));
+			// will give the starting pos of char found, failing will return -1
+			document.write("<hr> Search for ll in hello " + "hello".search("ll"));
+			
+			document.write("<hr> Split" + "Team1:Team2:Team3:Team4:Team5".split(":"));
+
+
+			
+		}
+			
+	</script>
+  </head>
+  <body>
+  	<script type="text/javascript">
+		fnPreDefine();
+	</script>
+  </body>
+</html>
+
+
+
+

@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<script type="text/javascript">
+			function fnChangeContent(){
+				var name=prompt("Enter your Name " , "Name");
+				var contact=prompt("Enter your contact Number " , "contact Number");
+
+				var _temp = document.getElementById("change");
+
+				_temp.innerHTML="<b>Your Name is " + name +
+					"<br> Your Contact Number is " + contact;
+			}
+		</script>
+	</head>
+	<body>
+		<p>This is my Top Secion</p>
+		<div id="change" style="background-color: cyan"></div>
+		<p>This Company Information</p>
+		<p>This Company Information</p>
+		<p>This Company Information</p>
+		<p>This Company Information</p>
+		<p>This Company Information</p>
+	
+		<script type="text/javascript">
+			fnChangeContent();
+		</script>
+
+
+
+
+
+
+
+	</body>
+</html>

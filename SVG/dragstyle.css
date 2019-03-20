@@ -1,0 +1,10 @@
+
+#singleRectangle {
+    /* transition: all 1s;  */
+ /*   cursor: none; */
+}
+
+#singleRectangle:hover{
+    fill: black; 
+   /* transform: scale(1); */
+}

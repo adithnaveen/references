@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <link rel="stylesheet" type="text/css" href="./dragstyle.css" />
+
+     
+   <script type="text/javascript"> 
+
+   
+ document.onclick = function(e) { // shows click coordinates
+        console.log(e.clientX + ':' + e.clientY); 
+    };
+
+    function makeDraggable(evt) {
+      console.log(evt);
+      var svg = evt.target;
+
+      // 3rd paramenter is optional you can even remove it 
+      svg.addEventListener('mousedown', startDrag, true);
+      svg.addEventListener('mousemove', drag, true);
+      svg.addEventListener('mouseup', endDrag, true);
+
+      function getMousePosition(evt) {
+          
+          // Returns a DOMMatrix representing the matrix that
+          // transforms the current element's coordinate system 
+          // to the coordinate system of the SVG viewport for
+          // the SVG document fragment.
+
+        var CTM = svg.getScreenCTM();
+        return {
+          x: (evt.clientX - CTM.e) / CTM.a,
+          y: (evt.clientY - CTM.f) / CTM.d
+        };
+      }
+
+      var selectedElement, offset, transform;
+
+      function startDrag(evt) {
+
+        if (evt.target.classList.contains('draggable')) {
+          selectedElement = evt.target;
+          offset = getMousePosition(evt);
+            console.log("offset value start drag " + offset.x); 
+
+          // Make sure the first transform on the element is a translate transform
+          var transforms = selectedElement.transform.baseVal;
+
+          if (transforms.length === 0 || transforms.getItem(0).type !== SVGTransform.SVG_TRANSFORM_TRANSLATE) {
+            // Create an transform that translates by (0, 0)
+            var translate = svg.createSVGTransform();
+            translate.setTranslate(0, 0);
+            selectedElement.transform.baseVal.insertItemBefore(translate, 0);
+          }
+
+          // Get initial translation
+          transform = transforms.getItem(0);
+          offset.x -= transform.matrix.e;
+          offset.y -= transform.matrix.f;
+        }
+      }
+
+      function drag(evt) {
+        // recorded manually 
+        var left  = 149; 
+        var bottom = 400; 
+        var top =80; 
+        var right = 520; 
+
+        if (selectedElement) {
+          var coord = getMousePosition(evt);
+
+        coord.x < left ?  coord.x = left : coord.x > right ? coord.x = right: coord.x; 
+        coord.y < top ? coord.y = top : coord.y > bottom ? coord.y = bottom : coord.y; 
+        transform.setTranslate(coord.x - offset.x, coord.y - offset.y);
+         }
+      }
+
+      function endDrag(evt) {
+        selectedElement = false;
+      }
+    }
+
+    </script>
+  
+</head>
+<body>
+        <svg width="640" height="480" xmlns="http://www.w3.org/2000/svg" 
+            xmlns:svg="http://www.w3.org/2000/svg"  onload="makeDraggable(evt)">
+            <g class="layer">
+            
+             <rect fill="none" height="335" id="outerRectangle" 
+                stroke="#000000"  stroke-width="2" width="500" x="22" y="70"/>
+
+             <line fill="none" id="svg_1" stroke="#000000"
+                 stroke-width="3" x1="140.5" x2="140.5" y1="70" y2="405.99999"/>
+           
+                 <rect fill="none" height="50" id="singleRectangle" 
+                 stroke="#000000"
+                    class="draggable"
+                 stroke-width="2" width="50" x="37.5" y="145.5"/>
+                <g>
+                    <rect fill="none" height="32" id="leftRectangle" 
+                    stroke="#000000" stroke-width="2" width="18" x="45.5" y="210"/>
+                    
+                    <rect fill="none" height="32" id="rightRectangle" 
+                    stroke="#000000" stroke-width="2" width="20" x="75.5" y="210"/>
+                </g>
+            </g>
+           </svg>
+</body>
+</html>

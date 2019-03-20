@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script type="text/javascript" src="./sample.js"></script>
+    <style type="text/css" >
+        .myrect{
+            width: 50px; 
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <g>
+    <svg>
+        <!-- draw a rectangle -->
+        <text x="200" y="30"> A Rectangle </text>
+        <circle cx="50" cy="50" r="50" fill="grey" />
+        <rect class="myrect" x="100" y="50"/>
+        <line x1="0" y1="0" x2="100" y2="100" stroke="black"/>
+    </svg>    
+    </g>
+<hr />
+    <svg>
+            <path d="M 300 200 L 200 200 H 10 V 100 H 140"
+             fill="green" stroke="red" stroke-width="3" />
+    </svg>
+
+    <hr /> 
+    <!-- text path -->
+
+    <svg viewBox="0 0 400 600">
+
+        <defs>
+            <path id="MyPath" d="M 0 50 Q 200 300 120 150" />
+
+        </defs>
+
+        <use xlink:href="#MyPath" fill="none" stroke="black" />
+
+        <text font-family="Arial" font-size="30">
+            <textPath xlink:href="#MyPath">
+                Hello World
+            </textPath>
+
+        </text>
+
+    </svg>
+
+    
+    <svg width="200" height="200">
+        <circle cx="100" cy="100" r="100" fill="lightblue"/>
+    </svg>
+    
+    <hr />
+    <svg width="100" height="100" viewBox="0 0 100 100">
+        <circle cx="100" cy="100" r="100" fill="lightblue"/>
+    </svg>
+
+
+    <svg width="100" height="100" viewBox="100 100 100 100">
+        <circle cx="100" cy="100" r="100" fill="lightblue"/>
+    </svg>
+    
+
+    <!-- add css in CDATA Section-->
+
+    <svg>
+        <style>
+            <![CDATA [
+                #myRectangle {fill: lightblue;}
+            ]]>
+
+        </style>
+        
+        <rect id="myRectangle" x="0" y="0" width="100" height="70"/>
+    </svg>
+
+    <hr /> 
+
+    <svg>
+        <rect x="0" y="0" width="50" height="90" fill="blue"
+              id="my-rect" class="a-rect" />
+        <script>
+          <![CDATA[
+            console.log(document.getElementsByTagName('rect'))
+            console.log(document.getElementById('my-rect'))
+            console.log(document.querySelector('.a-rect'))
+            console.log(document.querySelectorAll('.a-rect'))
+          ]]>
+        </script>
+      </svg>
+
+      <button onclick="changeColor('blue')">Blue</button>
+      <button onclick="changeColor('red')">Red</button>
+      <button onclick="changeColor('pink')">Pink</button>
+
+      <hr />
+      <!--
+          (xlink:href is for Safari support, 
+          even if it’s a deprecated attribute) 
+        -->
+        <svg class="hidden">
+            <symbol id="rectangle" viewBox="0 0 20 20">
+                <rect x="0" y="0" width="30" height="30" fill="var(--color)" />
+            </symbol>
+        </svg>
+
+        <svg class="blue">
+            <use xlink:href="#rectangle" href="#rectangle" />
+            </svg>
+            
+            <svg class="red">
+            <use xlink:href="#rectangle" href="#rectangle" />
+            </svg>
+            
+            <style>
+            svg.red {
+              --color: red;
+            }
+            svg.blue {
+              --color: blue;
+            }
+        </style>
+</body>
+</html>

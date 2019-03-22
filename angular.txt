@@ -1,0 +1,1269 @@
+ng --help 
+npm update npm 
+
+// this app is created only for explanation 
+ng new first-app 
+
+// notes 
+tslint.json is the rules followed for writing 
+the typescript 
+
+ng serve -o
+// show the program make some changes 
+
+// then to the styles install boostrap 
+
+npm -i bootstrap 
+
+// in angular.json under styles  make an entry 
+
+-- "node_modules/bootstrap/dist/css/bootstrap.min.css"
+
+
+
+// then create a counter app 
+> ng g c components/header 
+or 
+ng generate component components/header
+if you dont want the spec file 
+
+ng generate component components/header --spec=false
+or 
+ng g c --spec=false 
+
+to get help on creating the ng component
+ng g c --help 
+
+then create other components 
+
+> ng g c components/footer 
+> ng g c components/counter 
+
+ header and footer will not have much things 
+
+counter.component.ts 
+---------------------------------------------------------
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-counter',
+  templateUrl: './counter.component.html',
+  styleUrls: ['./counter.component.css']
+})
+export class CounterComponent implements OnInit {
+  // you have to say this. in typescript this is mandatory 
+  ngOnInit(): void {
+    this.count = 0;
+  }
+
+  // you can specify the datatype 
+  count: number;
+  // your javascript initialization can go here
+  constructor() { }
+
+  increment(){
+    this.count ++; 
+  }
+
+  decrement(){
+    this.count-- ; 
+  }
+
+}
+
+---------------------------------------------------------
+counter.component.html
+---------------------------------------------------------
+<div class="container">
+<h3>The count value is {{count }}</h3>
+
+<button (click)="increment()" class="btn btn-primary">Increment</button> | 
+<button (click)="decrement()" class="btn btn-primary" >Decrement</button>
+
+</div>
+---------------------------------------------------------
+// create another component
+> ng g c ngforof-demo 
+---------------------------------------------------------
+ngforof-demo.component.ts (Version 01) 
+---------------------------------------------------------
+
+// variable 
+  people: Array<any>;
+
+  
+  ngOnInit() {
+    this.people = [
+      {name: 'Naveen', age: 35, city: 'Bengaluru', picture: 'assets/images/naveen.jpg'},
+      {name: 'Chaitra', age: 26, city: 'Harihara', picture: 'assets/images/chai.JPG'},
+      {name: 'Kanchan', age: 16, city: 'New York', picture: 'assets/images/kanchan.JPG'}
+    ];
+  }
+
+---------------------------------------------------------
+ngforof-demo.component.html (version 1) 
+---------------------------------------------------------
+<h4 *ngIf="people.length>0">There are {{people.length}} contacts </h4>
+<h4 *ngIf="people.length===0">There are not contacts in your phone book
+
+
+  <ul>
+              <li *ngFor="let temp of people;index as i">
+
+  [ngStyle] can be written as shown below or it can be kept in .ts class 
+    <img [src]='temp.picture' [ngStyle]="{height: '70px', width:'50px'}">
+	 {{temp.name}} is from {{temp.city}}, with age {{temp.age}}, {{temp.picture}}
+	 </li>
+  </ul>
+---------------------------------------------------------
+version 2 
+---------------------------------------------------------
+ngforof-demo.component.ts
+---------------------------------------------------------
+ imageStyles = {
+    'height.px': 70,
+    'border-radius': '20px',
+    'width.px' : 70,
+    'margin.px' : 5
+  };
+---------------------------------------------------------
+ngforof-demo.component.html 
+---------------------------------------------------------
+ <img [src]='temp.picture' [ngStyle]="imageStyles">
+---------------------------------------------------------
+version 3 
+since we have bootstrap we can use some classes from them 
+ngforof-demo.component.html 
+<li *ngFor="let temp of people" [ngClass]={'text-success':true}>
+now the content is in green color 
+
+ <li *ngFor="let temp of people" [ngClass]="{'text-success': temp.age>=18, 
+          'text-danger': temp.age <18}" >
+		  
+
+we can also substitute that from css class 
+  <li *ngFor="let temp of people;index as i" [ngClass]="getCssClass(temp.age)" >
+  will create a function called getCssClass()
+		  
+---------------------------------------------------------
+ngforof-demo.component.ts 
+---------------------------------------------------------
+
+  getCssClass(age){
+    return age >=18 ? 'text-success' : 'text-danger';
+  }
+
+---------------------------------------------------------
+you can delete the element from the list 
+---------------------------------------------------------
+
+ngforof-demo.component.ts 
+
+  deletePerson(index){
+    this.people.splice(index, 1);
+  }
+---------------------------------------------------------
+in .html 
+---------------------------------------------------------
+ <li *ngFor="let temp of people;index as i" [ngClass]="getCssClass(temp.age)" >
+  <button class="btn btn-warning" (click)="deletePerson(i)" >X</button>
+---------------------------------------------------------
+---------------------------------------------------------
+to show working of ng swith 
+---------------------------------------------------------
+> ng g c components/ng-switch 
+---------------------------------------------------------
+ng-switch.component.ts 
+---------------------------------------------------------
+<h3>ngSwitchDemo</h3>
+
+<!-- which ever numbered div you have click it should be shown  -->
+<hr />
+<!-- button.btn.btn-primary*4{Button $} -->
+<button class="btn btn-link" (click)="setChoice(1)">Mickey Mouse</button>
+<button class="btn btn-link" (click)="setChoice(2)">Donald Duck</button>
+<button class="btn btn-link" (click)="setChoice(3)">Talespin</button>
+<button class="btn btn-link" (click)="setChoice(4)">Motu Patlu</button>
+<button class="btn btn-link" (click)="setChoice(5)">Tom & Jerry </button>
+
+
+<!-- div*4{This is div Number $} -->
+
+<div [ngSwitch]="choice">
+    <!-- .row>.col*2 -->
+
+    <div *ngSwitchCase="1">
+      <div class="row">
+        <div class="col">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/Mickey_Mouse.png/220px-Mickey_Mouse.png" alt="">
+        </div>
+        <div class="col">
+            Mickey Mouse story 
+			
+        </div>
+      </div>
+    </div>
+    <div *ngSwitchCase="2">
+
+        <div class="row">
+          <div class="col">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b4/Donald_Duck.svg/220px-Donald_Duck.svg.png" alt="">
+          </div>
+          <div class="col">Donald Duck  story 
+
+            </div>
+        </div>
+
+    </div>
+    <div *ngSwitchCase="3">
+      <div class="row">
+        <div class="col">
+
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f0/Talespin.jpg/250px-Talespin.jpg" alt="">
+
+        </div>
+        <div class="col">
+            TaleSpin  story 
+
+
+
+        </div>
+      </div>
+
+    </div>
+    <div *ngSwitchCase="4">
+
+      <div class="row">
+        <div class="col">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/Motu_Patlu.Jpg/250px-Motu_Patlu.Jpg" alt="">
+        </div>
+        <div class="col">
+
+            Motu Patlu  story 
+
+
+        </div>
+      </div>
+    </div>
+
+    <div *ngSwitchDefault>
+      No Content 
+    </div>
+</div>
+
+---------------------------------------------------------
+ng-switch.component.ts 
+---------------------------------------------------------
+
+  choice = 1;
+
+// method shall show the content in the html 
+  setChoice(choice){
+    this.choice = choice; 
+}
+---------------------------------------------------------
+when ever you refresh the browser the data is always set to 1 
+becasue we are initializing to 1 
+---------------------------------------------------------
+ng-switch.component.ts 
+
+  ngOnInit() {
+    if(localStorage['userChoice'] ){
+      // first show with sessionStorage and then  with localStorage 
+      // change every occurance of sessionStorage to localStorage 
+      // this.choice = sessionStorage['userChoice']; 
+
+      this.choice = localStorage['userChoice']; 
+    }
+	
+	
+  setChoice(choice){
+    this.choice = choice; 
+    localStorage['userChoice'] = choice;
+  }
+---------------------------------------------------------
+
+---------------------------------------------------------
+---------------------------------------------------------
+to create custom directive 
+1. create a component
+> ng g c components/custom-directive-component --spec=false 
+
+// this will create only .ts and .spec.ts files
+// there will not be .html file 
+> ng g d directives/box 
+
+make changes in app.component.html 
+
+---------------------------------------------------------
+custom-directive.component.html
+---------------------------------------------------------
+
+
+<div >This is a div</div>
+  <p  >This is a paragraph</p>
+  
+  <img  src="/assets/images/kanchan.JPG" alt="" [ngStyle]="{'height.px': 100}" > 
+
+---------------------------------------------------------
+---------------------------------------------------------
+
+	//  this is element of angular core 
+  constructor(private elem: ElementRef) {
+
+  }
+
+  // AfterViewInit is an interface 
+export class BoxDirective implements AfterViewInit {
+ngAfterViewInit(): void {
+    // this.elem.nativeElement.style.border = '1px solid black';
+    // this.elem.nativeElement.style.borderRadius = '5px';
+    // this.elem.nativeElement.style.padding = '5px';
+    // this.elem.nativeElement.style.margin = '5px';
+
+	}
+}
+
+
+then goto 
+custom-directive.component.html
+
+
+<div >This is a div</div>
+  <p  >This is a paragraph</p>
+  
+  <img  src="/assets/images/kanchan.JPG" alt="" [ngStyle]="{'height.px': 100}" > 
+
+
+---------------------------------------------------------
+it is possible to pass the values in the ngAfterViewInit() method from the variables 
+---------------------------------------------------------
+
+  // declare these variables for version 1
+  size = '1px';
+
+  type = 'solid';
+  color = 'black';
+
+  
+  
+  ngAfterViewInit(): void {
+    // version  2
+    this.elem.nativeElement.style.border = `${this.size} ${this.type} ${this.color}`
+    this.elem.nativeElement.style.borderRadius = '5px';
+    this.elem.nativeElement.style.padding = '5px';
+    this.elem.nativeElement.style.margin = '5px';
+  }
+
+
+---------------------------------------------------------
+if you want to pass these values from the html, then annotate from @Input 
+---------------------------------------------------------
+
+
+  // if you want to take the value from the .html file you have to have @Input() 
+  @Input()
+  // declare these variables for version 1
+  size = '1px';
+  @Input()
+  type = 'solid';
+  @Input()
+  color = 'black';
+  
+  and in html you can specify like below 
+  
+  <div appBox [size]="'5px'">This is a div</div>
+  <p appBox [type]="'dashed'" [size]="'5px'">This is a paragraph</p>
+  
+  <img appBox [color]="'blue'"  src="/assets/images/kanchan.JPG" 
+  alt="" [ngStyle]="{'height.px': 100}" >  -->
+
+---------------------------------------------------------
+---------------------------------------------------------
+---------------------------------------------------------
+---------------------------------------------------------
+
+
+
+
+
+--------------------for phone book app ---------------- 
+
+> ng new phonebook-app 
+> npm i bootstrap 
+> ng g c components/header --spec=false 
+> ng g c components/sidebar --spec=false 
+> ng g c components/home --spec=false 
+
+app.component.html
+---------------------------------------------------------------------
+<div class="row">
+  <app-header></app-header>
+</div>
+
+<div class="row">
+  <div class="col-sm-4">
+    <app-sidebar></app-sidebar>
+
+  </div>
+  <div class="col-sm-8">
+    <app-home></app-home>
+  </div>
+</div>
+
+
+-------------------------------------------------------------------------
+header.component.html
+-------------------------------------------------------------------------
+<div class="alert alert-info">
+  <h1>phone book application</h1>
+</div>
+-------------------------------------------------------------------------
+sidebar.component.html (since the full-height class is not there in 
+bootstrap we can create our own CSS ) 
+-------------------------------------------------------------------------
+<!-- .alert.alert-warning -->
+<div class="alert alert-warning full-height">
+
+    <button class="btn btn-secondary btn-block"
+      [routerLink] ="['/home']">Home</button>
+    
+      <button class="btn btn-secondary btn-block"
+    [routerLink] ="['/contact-list']" >Contact List</button>
+    
+    <button class="btn btn-secondary btn-block"
+    [routerLink] ="['/add-contact']" >Add New Contact</button>
+    
+  </div>
+-------------------------------------------------------------------------
+sidebar.component.css 
+-------------------------------------------------------------------------
+.full-height{
+    min-height: 350px; 
+}
+-------------------------------------------------------------------------
+home.component.html (you have to have the folder created assets/images and 
+paste the images) 
+-------------------------------------------------------------------------
+<div>
+  <h3>Angular Application</h3>
+  <p>Developed By Naveen</p>
+  <img src="/assets/images/kanchan.JPG" alt="" [ngStyle]="{'height.px': 100}">
+</div>
+-------------------------------------------------------------------------
+
+> ng g c components/contact-details --spec=false 
+
+> ng generate class model/contact 
+
+-------------------------------------------------------------------------
+/model/contact.ts 
+-------------------------------------------------------------------------
+export class Contact {
+    id: number;
+    firstName: string;
+    lastName: string;
+    gender: string = 'Male';
+    email: string;
+    phone: string;
+    // to mention this field as option use ? 
+    dob?: string;
+    picture = '/assets/images/naveen.jpg';
+    city?: string;
+    state?: string;
+    country?: string;
+}
+
+-------------------------------------------------------------------------
+contact-details.component.ts
+-------------------------------------------------------------------------
+// if you give its bettern if not by default angular shall take absolute path
+
+import { Contact } from '../../model/contact';
+export class ContactDetailsComponent implements OnInit {
+
+  contact: Contact;
+  
+  
+  ngOnInit() {
+    // this will be version 1
+    /*    this.contact = new Contact();
+       this.contact.id = 101;
+       this.contact.firstName = 'Naveen';
+       this.contact.lastName = 'Kumar';
+       this.contact.email = 'naveen@probits.in';
+       this.contact.phone = '9900524255';
+       this.contact.gender = 'Male';
+       this.contact.city = 'Bengaluru';
+       this.contact.state = 'Karnataka';
+       this.contact.country = 'India';
+	   // give it in ISO format 
+       this.contact.dob = '1984-02-25'; */
+	} 
+}
+	once after that display it on HTML 
+-------------------------------------------------------------------------
+contact-details.component.html
+-------------------------------------------------------------------------
+<!--div.row*8>div.col*2-->
+<h3>Contact Details</h3>
+<hr />
+
+<!-- you can also use interpolation {{contact.picture}}-->
+<img [src]="contact.picture" alt="" style="height:150px">
+<div class="row">
+  <div class="col-sm-4"> Name </div>
+  <!--
+	// first show the gender and then write the conditon 
+      version 1 
+     <div class="col-sm-8">
+      {{contact.gender==="Male"?"Mr.":"Ms."}}
+    {{contact.firstName}} {{contact.lastName}}</div> -->
+
+</div>
+
+<div class="row">
+  <div class="col-sm-4">DOB</div>
+  <div class="col-sm-8">{{contact.dob}}</div>
+</div>
+<div class="row">
+  <div class="col-sm-4">Email</div>
+  <div class="col-sm-8">{{contact.email}}</div>
+</div>
+<div class="row">
+  <div class="col-sm-4">Phone Number</div>
+  <div class="col-sm-8">{{contact.phone}}</div>
+</div>
+<div class="row">
+  <div class="col-sm-4">City</div>
+  <div class="col-sm-8">{{contact.city | uppercase}}</div>
+</div>
+<div class="row">
+  <div class="col-sm-4">State</div>
+  <div class="col-sm-8">{{contact.state}}</div>
+</div>
+<div class="row">
+  <div class="col-sm-4">Country</div>
+  <div class="col-sm-8">{{contact.country}}</div>
+</div>
+
+// to show the contact details you have to make change in 
+app.component.html 
+
+<app-contact-details></app-contact-details> 
+
+
+then make changes in contact-details.component.ts file from 
+Male to Female 
+-------------------------------------------------------------------------
+to convert to upper case you can write 
+{{contact.city | uppercase}}
+
+is an alias for the transform class 
+
+angular.io -> docs -> api refs -> pipes 
+-------------------------------------------------------------------------
+contact-details.component.html 
+-------------------------------------------------------------------------
+ 
+    <div class="col-sm-8">
+      {{contact | fullname}}
+    </div>
+
+there will be error in console show that in  browser 
+-------------------------------------------------------------------------
+ now you have to create the custom pipe to show the full name 
+ > ng g p pipes/fullname --spec=false
+ this will create 1 file, as components are part of the module 
+ pipes are also part of the module 
+
+-------------------------------------------------------------------------
+fullname.pipe.ts
+-------------------------------------------------------------------------
+
+// this is for
+// {{contact | fullname}}
+
+// you have to write "implements PipeTransform" if not there 
+export class FullnamePipe implements PipeTransform {
+
+  transform(contact: Contact): string {
+    if (!contact) {
+      return '';
+
+    }
+
+    const title = contact.gender === 'Male' ? 'Mr. ' : 'Ms.';
+    return title + ' ' + contact.firstName + ' ' + contact.lastName;
+  }
+
+}
+
+-------------------------------------------------------------------------
+// lets create another pipe to show age of the person 
+ // create this also if needed to show the age 
+> ng g p pipes/age --spec=false
+-------------------------------------------------------------------------
+age.pipe.ts 
+-------------------------------------------------------------------------
+
+// for using
+// {{contact.dob | age}}
+//  ---> 35 Years
+
+// if you supply as
+// {{contact.dob | age :1 }}
+//  ---> 35 Years
+
+// if you supply as
+// {{contact.dob | age :2 }}
+//  ---> 35 Years and 2 months
+
+// if you supply as
+// {{contact.dob | age :3 }}
+//  ---> 35 Years 2 months and 8 days
+
+
+@Pipe({
+  name: 'age'
+})
+export class AgePipe implements PipeTransform {
+
+  // the transform's second parameter is options (its like vargs in java )
+  transform(dob: string, flag?: number): any {
+
+    if (!dob) {
+      return '';
+    }
+
+    const date1 = new Date(dob);
+    const diff = Date.now() - date1.getTime();
+    const date2 = new Date(diff);
+    const year = date2.getFullYear() - 1970;
+    const month = date2.getMonth();
+    const days = date2.getDay();
+
+    let output = '';
+
+    switch (flag) {
+      case 1:
+        // tslint:disable-next-line:semicolon
+        output = `${year} Years`;
+        break;
+      case 2:
+        output = `${year} Years, ${month} Months`;
+        break;
+      case 3:
+        output = `${year} Years, ${month} Months, ${days} Days`;
+        break;
+
+
+      default:
+        output = `${year} Years`;
+    }
+
+
+    return output;
+  }
+
+}
+
+once after doing this make changes in  contact-details.component.html 
+
+<div class="row">
+  <div class="col-sm-4">DOB</div>
+  <div class="col-sm-8">{{contact.dob}}<br /> ({{contact.dob | age :3}})</div>
+</div>
+-------------------------------------------------------------------------
+
+open 
+contact-details.component.ts and show the contact details is hard coded 
+for the same we can have service layer 
+// to create the service to do CRUD operation 
+> ng g s service/phonebook --spec=false 
+// this will not update the app.module.ts 
+-------------------------------------------------------------------------
+phonebook.service.ts 
+-------------------------------------------------------------------------
+// ideally this should get the data from external server
+export class PhonebookService {
+
+ constructor(private http: HttpClient) { 
+ }
+ 
+  getContactDetails(id: number): Contact {
+  
+	 let contact = new Contact();
+     contact.id = id;
+     contact.firstName = 'Naveen';
+     contact.lastName = 'Kumar';
+     contact.email = 'naveen@probits.in';
+     contact.phone = '9900524255';
+     contact.gender = 'Male';
+     contact.city = 'Bengaluru';
+     contact.state = 'Karnataka';
+     contact.country = 'India';
+     contact.dob = '1984-02-25';
+     contact.picture = 'https://ixxidesign.azureedge.net/media/1676572/Mickey-Mouse-3.jpg?mode=max&width=562&height=613';
+      return contact;
+  } 
+  }
+-------------------------------------------------------------------------
+contact-details.component.ts 
+-------------------------------------------------------------------------
+take off the contents of the ngOnInit() function and put this, this we 
+we can create an object and invoke and show the output, it should work 
+but this is directly dependent.
+
+  ngOnInit() {
+
+     let service = new PhonebookService();
+     this.contact = service.getContactDetails(101);
+
+}
+
+you can have next version 
+// here the object will be injected by angular, and the object is singleton, 
+// you can pass private here so that you dont have to create a variable 
+
+
+constructor(private service: PhonebookService){}
+		
+ngOnInit() {
+     this.contact = service.getContactDetails(101);
+}
+-------------------------------------------------------------------------
+setting up rest end point 
+-------------------------------------------------------------------------
+
+// this is used for phoneboo app 
+//  to install json server 
+> npm i json-server 
+
+// create a folder called db and file called data.json 
+-------------------------------------------------------------------------
+
+{
+	"contacts":[
+		{
+			"id":1, 
+			"firstname":"Naveen", 
+			"lastname":"kumar", 
+			"gender":"Male", 
+			"email":"naveen@probits.in", 
+			"phone":"9900524255",
+			"city":"Bengaluru", 
+			"state":"Karnataka", 
+			"country":"India", 
+			"dob":"1984-1-10", 
+			"picture":"http://some image " 
+		}, 
+		{
+			"id":2, 
+			"firstname":"Harry", 
+			"lastname":"Peter", 
+			"gender":"Female", 
+			"email":"harry@probits.in", 
+			"phone":"332323",
+			"city":"Reston", 
+			"state":"VA", 
+			"country":"USA", 
+			"dob":"1977-1-10", 
+			"picture":null
+		}
+	]
+}
+-------------------------------------------------------------------------
+goto package.json -> under scripts tag 
+ "json-server": "json-server --port 4300 --watch db/data.json"
+ 
+ > npm run json-server 
+ 
+
+// edit package.json enter json-server entry 
+// you can see it in 
+http://localhost:4300/contacts
+http://localhost:4300/contacts/1
+
+-------------------------------------------------------------------------
+
+// to create more data 
+// mockaroo.com
+// for picture you can give this expression , select blank 
+concat('img', id, '.jpg')
+-------------------------------------------------------------------------
+consume the rest end point 
+-------------------------------------------------------------------------
+1. app.module.ts 
+import { HttpClientModule } from '@angular/common/http';
+
+imports: [
+    BrowserModule,
+    HttpClientModule
+	]
+-------------------------------------------------------------------------
+in phonebook.service.ts 
+
+import {HttpClient} from "@angular/common/http"
+
+export class PhonebookService {
+const baseUrl="http://localhost:4300/contacts"; 
+	// the constructor shall have HttpClient 
+  constructor(private http: HttpClient) { }
+  
+  	// this will return the observable, so change from Contact 
+	/// to Observable<any>
+  getContactDetails(id: number): Observable<any> {
+    return this.http.get(baseUrl + id); 
+   }
+   
+-------------------------------------------------------------------------
+contact-details.component.ts 
+-------------------------------------------------------------------------
+// to avoid the error on the console 
+  contact: Contact = new Contact();
+  ngOnInit() {
+  
+   this.service.getContactDetails(1)
+        .subscribe(data => this.contact = data);
+  
+  }
+-------------------------------------------------------------------------
+write crud operations 
+// the http.get returns the observable, and for the same you have to map 
+// and when you map this it would give error, since map is not there 
+// for that import 
+
+// to work with this you have to install
+// npm install rxjs-compat
+import 'rxjs/add/operator/map';
+
+
+  getContactDetails(id: number): Observable<Contact> {
+	// map has access to response data, you have to install rxjs-compat 
+    return this.http.get(baseUrl + id).map(data => data as Contact);
+
+  } 
+  
+  addNewContact(contact: Contact): Observable<Contact> {
+    return this.http.post(baseUrl, contact).map(data => data as Contact);
+  }
+
+  updateContact(contact: Contact): Observable<Contact> {
+    return this.http.put(baseUrl + contact.id, contact).map(data => data as Contact);
+  }
+
+  deleteConact(id: number): Observable<any> {
+    return this.http.delete(baseUrl + id);
+  }
+
+  // which will give list of contact 
+  // instead of single contact it will be Contact[] 
+  getAllConacts(pageNumber: number = 1): Observable<Contact[]> {
+    const params = {
+      _page : '' + pageNumber
+    };
+	// second arguments to the get is params 
+    return this.http.get(baseUrl, {params}).map(resp => resp as Contact[]);
+  }
+  
+-------------------------------------------------------------------------
+we have all the function ready, lets show 
+ng g c components/contact-list --spec=false 
+
+
+-------------------------------------------------------------------------
+contact-list.component.ts
+-------------------------------------------------------------------------
+
+import {Contact} from 'src/app/model/contact'; 
+
+
+export class ContactListComponent implements OnInit {
+
+  contacts: Contact[];
+  pageNum = 1;
+  
+  // since service is @injectable
+  constructor(private service: PhonebookService) { }
+
+  ngOnInit() {
+    this.service.getAllConacts(1)
+      .subscribe(data => this.contacts = data);
+  }
+
+  // once after this show it in html (contact-list.compat.html) 
+  
+  loadMore() {
+    this.pageNum++;
+    this.service.getAllConacts(this.pageNum)
+      /// ... is called as spread operator in ES6
+      .subscribe(data => this.contacts = [...this.contacts, ...data]);
+  }
+
+}
+-------------------------------------------------------------------------
+contact-list.component.html 
+-------------------------------------------------------------------------
+show the documentation of the ngForOf 
+angular.io -> docs -> directives 
+
+
+<h3>List of All Contacts</h3>
+<hr >
+
+<!-- angular has log of directive to show we can use ngFor-Of -->
+// this is only for showing, you can comment 
+{{contacts | json }}
+
+<div class="list-group">
+<div *ngFor="let c of contacts">
+  <div class="row">
+    <div class="col-sm-4">
+      <img src="../../../assets/images/naveen.jpg" alt="" style="height:100px">
+    </div>
+    <div class="col-sm-8">
+      <h4>{{c | fullname}}</h4>
+      <p>{{c.city}}, {{c.state}}</p>
+    </div>
+  </div>
+  <hr />
+</div>
+</div>
+<button class="btn btn-primary" (click)="loadMore()">Load More... </button>
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+Router Configuration and changing view 
+-------------------------------------------------------------------------
+app.component.html
+
+have a new tag called 
+
+    <!-- this is an implicit component, for this you have to get it from 
+		angular routes -->
+    <router-outlet></router-outlet
+	
+remove home component 
+
+-------------------------------------------------------------------------
+app.module.ts 
+-------------------------------------------------------------------------
+
+import { RouterModule, Routes } from '@angular/router';
+
+
+const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home'
+  },
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: 'contact-list',
+    component: ContactListComponent
+  },
+  {
+    path: 'contact-details/:id',
+    component: ContactDetailsComponent
+  },
+  {
+    path: 'add-contact',
+    component: AddContactComponent
+  }
+];
+
+@NgModule ({... })
+
+imports: [
+    BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes), 
+  ],
+
+now you have to tell what to click for this goto sidebar.component.html
+-------------------------------------------------------------------------
+sidebar.component.html
+-------------------------------------------------------------------------
+
+    <button class="btn btn-secondary btn-block"
+      [routerLink] ="['/home']">Home</button>
+    
+      <button class="btn btn-secondary btn-block"
+    [routerLink] ="['/contact-list']" >Contact List</button>
+    
+    <button class="btn btn-secondary btn-block"
+    [routerLink] ="['/add-contact']" >Add New Contact</button>
+	
+	now navigate and show different pages 
+-------------------------------------------------------------------------
+contact-details.component.html 
+-------------------------------------------------------------------------
+
+<div class="list-group">
+<div *ngFor="let c of contacts">
+  <div class="row">
+    <div class="col-sm-4">
+      <img src="../../../assets/images/naveen.jpg" alt="" style="height:100px">
+    </div>
+    <div class="col-sm-8">
+      <h4 [routerLink] ="['/contact-details', c.id]" 
+       style="cursor:pointer;" >{{c | fullname}}</h4>
+	  <!-- important make sure app.module.ts, routes 
+			path: 'contact-details/:id'
+			
+      <p>{{c.city}}, {{c.state}}</p>
+    </div>
+  </div>
+  <hr />
+</div>
+</div>
+<button class="btn btn-primary" (click)="loadMore()">Load More... </button>
+
+check in contact-details.component.ts file the ngOnInit(is taking the param )
+-------------------------------------------------------------------------
+
+export class ContactDetailsComponent implements OnInit {
+
+// if you dont say as private then you may have to create the instance variable
+  constructor(private service: PhonebookService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) {
+
+  }
+
+ngOnInit() {
+    this.activatedRoute.params.subscribe(paramsData => {
+	// id here is coming from routes app.module.ts 
+      this.service.getContactDetails(paramsData['id'])
+        .subscribe(data => this.contact = data);
+    });
+  }
+  
+ }
+-------------------------------------------------------------------------
+to delete the contact 
+
+contact-details.component.html 
+at the last of div 
+<button class="btn btn-danger" (click)='deleteContact()'>Delete</button>
+
+
+  // to delete the contact and navigate to contact-list 
+  
+  deleteContact() {
+    if (!confirm('Are you sure')) {
+      return;
+    }
+    this.service.deleteConact(this.contact.id)
+      .subscribe(() => {
+        this.router.navigate(['/contact-list']);
+      })
+  }
+-------------------------------------------------------------------------
+working with template-driver form for adding new contacts 
+create a new component 
+> ng g c components/add-contact --spec=false 
+
+
+add-contact.component.html 
+
+
+<h3>Add New Contact</h3>
+<hr>
+{{contact | json}}
+<form class="form">
+  <div class="form-group">
+    <div class="form-group">
+      <label for="firstName">FirstName</label>
+      <input type="text" class="form-control" id="firstname" name="firstName" [(ngModel)]='contact.firstName'>
+    </div>
+
+
+    <div class="form-group">
+      <label for="lastName">LastName</label>
+      <input type="text" class="form-control" id="lastname" name="lastName"  [(ngModel)]='contact.lastName'>
+    </div>
+
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <label><input type="radio" name="gender" value="Male" [(ngModel)]='contact.gender'> Male</label>
+      <label><input type="radio" name="gender" value="Female" [(ngModel)]='contact.gender'>Female</label>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" name="email" [(ngModel)]='contact.email'>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control" id="phone" name="phone"[(ngModel)]='contact.phone'>
+      </div>
+
+      
+    <div class="form-group">
+        <label for="dob">DOB (YYYY-MM-DD)</label>
+        <input type="text" class="form-control" id="dob" name="email"[(ngModel)]='contact.dob'>
+      </div>
+
+      
+    <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" name="city" [(ngModel)]='contact.city'>
+      </div>
+
+      
+    <div class="form-group">
+        <label for="state">State</label>
+        <input type="text" class="form-control" id="state" name="state" [(ngModel)]='contact.state'>
+      </div>
+
+    
+      <div class="form-group">
+          <label for="country">Country</label>
+          <input type="text" class="form-control" id="country"  name="country" [(ngModel)]='contact.country'>
+        </div>
+
+  </div>
+  <button class="btn-btn-primary" (click)="addContact()">Add</button>
+</form>
+
+
+-------------------------------------------------------------------------
+add-contact.component.ts 
+-------------------------------------------------------------------------
+export class AddContactComponent implements OnInit {
+
+
+  contact: Contact;
+
+  constructor(private service: PhonebookService,
+  //router to navigate after inserting  
+    private router: Router) { }
+
+  ngOnInit() {
+    this.contact = new Contact();
+  }
+
+  addContact() {
+    this.service.addNewContact(this.contact)
+      .subscribe(contact => {
+        console.log('added a new contact ' + contact.id);
+        this.router.navigate(['/contact-details', contact.id]);
+      });
+  }
+
+}
+
+-------------------------------------------------------------------------
+Validating User Inputs (even if the details are wrongly given it ccepts) 
+-------------------------------------------------------------------------
+angular.io > docs > FUNDAMENTS -> forms -> form validation 
+https://angular.io/guide/form-validation
+-------------------------------------------------------------------------
+add-contact.component.html (included only changed fields) 
+-------------------------------------------------------------------------
+<h3>Add New Contact</h3>
+<hr>
+{{contact | json}}
+<form class="form" #f1="ngForm">
+  <div class="form-group">
+    <div class="form-group">
+      <!-- goto application and inspect element you should see ng-pristine
+            ng-invalid etc, this is the state of the text box -->
+      <label for="firstName">FirstName</label>
+      <input type="text" class="form-control" id="firstname" required minlength="5" maxlength="10" #firstname='ngModel'
+        name="firstName" [(ngModel)]='contact.firstName'>
+
+      <div class="err" *ngIf="firstname.dirty && firstname.invalid">
+        <div *ngIf="firstname.errors['required']">First Name Required</div>
+        <div *ngIf="firstname.errors['minlength']">Min 5 Chars </div>
+      </div>
+    </div>
+
+	
+
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <label><input type="radio" name="gender" value="Male" [(ngModel)]='contact.gender'> Male</label>
+      <label><input type="radio" name="gender" value="Female" [(ngModel)]='contact.gender'>Female</label>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Adddress</label>
+      <input type="email" class="form-control" id="email" #email='ngModel' required name="email"
+        [(ngModel)]='contact.email'>
+
+      <div class="err" *ngIf="email.dirty && email.invalid">
+        <div *ngIf="email.errors['required']">Email Name Required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input type="text" class="form-control" #phone='ngModel' required pattern="\d{10,12}" id="phone" name="phone"
+        [(ngModel)]='contact.phone'>
+
+      <div class="err" *ngIf="phone.dirty && phone.invalid">
+        <div *ngIf="phone.errors['required']">Phone Number Required</div>
+        <div *ngIf="phone.errors['pattern']">Please input 10-12 digits </div>
+      </div>
+    </div>
+
+	
+	
+
+  </div>
+  <button class="btn btn-{{f1.invalid?'danger':'primary'}}" [disabled]="f1.invalid" (click)="addContact()">Add
+    Record</button>
+</form>
+-------------------------------------------------------------------------
+Building and deploying 
+-------------------------------------------------------------------------
+1. show the folder structure 
+2. open terminal goto folder 
+3. ng serve -> show the sizes 
+4. dev console ->  network -> files are available but not physically 
+5. see the source code by right clicking there is lot of script injection 
+	which takes places 
+6.  ( see in package.json ng build, you can also get --help) 
+7. when you do dir in the project directory, you will not see dist folder 
+8. ng build --prod --aot (aot we will talk in next session ) 
+9. and now see the size 
+10. we can look for surge.sh 
+11. npm i -g surge 
+12. surge --help (explain the options of login and logout) 
+13. > surge <enter> it will ask for username and password 
+	if it is not there it will create if there it will login 
+	it will ask for project you have to give dist folder 
+	ex: C:\__home\harman\angular\phonebook-app\dist\phonebook-app
+14. 
+-------------------------------------------------------------------------
+// so that the vendor.js file is generate 
+> ng build 
+npm i source-map-explorer 
+> source-map-explorer .\dist\phonebook-app\vendor.js 
+this will open a web browser 
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+
+

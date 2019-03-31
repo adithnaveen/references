@@ -1,0 +1,20 @@
+Java 11 
+
+https://dzone.com/articles/90-new-features-and-apis-in-jdk-11
+
+https://winterbe.com/posts/2018/09/24/java-11-tutorial/
+
+https://codinginfinite.com/ten-features-java-jdk-11/
+
+https://gunnarmorling.github.io/jdk-api-diff/jdk10-jdk11-api-diff.html
+
+https://www.baeldung.com/java-9-http-client
+
+https://www.baeldung.com/java-var-lambda-params
+
+https://docs.oracle.com/en/java/javase/11/migrate/index.html#JSMIG-GUID-7744EF96-5899-4FB2-B34E-86D49B2E89B6
+
+
+https://linuxhint.com/java-11-new-features/ -> for epsilon Garbage Collector, Dynamic Class-File Constants
+
+for flight recorder -> http://www.mastertheboss.com/jboss-server/jboss-monitoring/monitoring-your-java-processes-with-jcmd-tool
